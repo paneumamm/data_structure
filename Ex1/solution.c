@@ -438,6 +438,22 @@ int main(void) {
     Destroy(E);
 
 
+    // 测试7：两个多项式都为空
+    A = InitPolyn();
+    B = InitPolyn();
+    E = InitPolyn();
+
+    RunTest("TEST 7: 两个多项式都为空",
+            A, B, E, &pass, &total);
+
+    Destroy(A);
+    Destroy(B);
+    Destroy(E);
+
+
+    
+
+
     // 汇总测试结果
     printf("\n%s%s", COLOR_BOLD, COLOR_CYAN);
     printf("====================================================\n");
@@ -446,9 +462,9 @@ int main(void) {
     printf("%s", COLOR_RESET);
 
     printf("  测试总数：%d\n", total);
-    printf("  %s通过数量：%d%s\n",
+    printf("  %s通过数量:%d%s\n",
            COLOR_GREEN, pass, COLOR_RESET);
-    printf("  %s失败数量：%d%s\n",
+    printf("  %s失败数量:%d%s\n",
            COLOR_RED, total - pass, COLOR_RESET);
 
     if (pass == total) {
