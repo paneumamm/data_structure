@@ -1,13 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>
+#include<math.h>+
+
+// ANSI 颜色定义
+#define COLOR_RESET  "\033[0m"
+#define COLOR_RED    "\033[31m"
+#define COLOR_GREEN  "\033[32m"
+#define COLOR_CYAN   "\033[36m"
+#define COLOR_YELLOW "\033[33m"
+#define COLOR_BOLD   "\033[1m"
+// 精度统一定义
+#define EPSILON 1e-10
 
 typedef struct Polynomial {
    float coef;
    int expn;
    struct Polynomial* next; 
 }Polyn;
-
 
 Polyn* InitPolyn() {
     Polyn* p = (Polyn*)malloc(sizeof(Polyn));
@@ -46,7 +55,7 @@ int LocatePolyn(Polyn* head, int expn) {
 }
 
 void InsertAfterPolyn(Polyn* head, float coef, int expn) {
-    if(head == NULL || fabs(coef) < 1e-6) {
+    if(head == NULL || fabs(coef) < EPSILON) {
         return;
     }
 
@@ -74,7 +83,7 @@ void InsertAfterPolyn(Polyn* head, float coef, int expn) {
     
     }else {
         //同指数项合并
-        if(fabs(cur->coef + coef) < 1e-6) {
+        if(fabs(cur->coef + coef) < EPSILON) {
             prev->next = cur->next;
             free(cur);
         }else {
@@ -98,6 +107,7 @@ void Destroy(Polyn* head) {
     }
 }
 
+//创建m项多项式
 Polyn* CreatePolyn(int m) {
     Polyn* head = InitPolyn();
 
@@ -115,7 +125,6 @@ Polyn* CreatePolyn(int m) {
     return head;
 }
 
-
 //多项式加法实现
 Polyn* AddPolyn(Polyn* add1, Polyn* add2) {
     Polyn* head = InitPolyn();
@@ -131,7 +140,7 @@ Polyn* AddPolyn(Polyn* add1, Polyn* add2) {
         float c2 = p2->coef; 
 
         if(e1 == e2) {
-           if(fabs(c1 + c2) < 1e-6) {
+           if(fabs(c1 + c2) < EPSILON) {
                 p1 = p1->next;
                 p2 = p2->next;
                 continue;
@@ -210,14 +219,6 @@ void PrintPolyn(Polyn* head) {
     }
     printf("\n");
 }
-
-// ANSI 颜色定义
-#define COLOR_RESET  "\033[0m"
-#define COLOR_RED    "\033[31m"
-#define COLOR_GREEN  "\033[32m"
-#define COLOR_CYAN   "\033[36m"
-#define COLOR_YELLOW "\033[33m"
-#define COLOR_BOLD   "\033[1m"
 
 // 比较两个多项式是否相同
 int EqualPolyn(Polyn* A, Polyn* B) {
@@ -550,7 +551,7 @@ int main(void) {
     Destroy(B);
     Destroy(E);
 
-    
+
     // 测试12：插入零系数项
     A = InitPolyn();
     B = InitPolyn();
