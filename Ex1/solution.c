@@ -534,6 +534,22 @@ int main(void) {
     Destroy(B);
     Destroy(E);
 
+    
+    // 测试11：插入后系数抵消
+    A = InitPolyn();
+    B = InitPolyn();
+    E = InitPolyn();
+
+    InsertAfterPolyn(A, 5, 2);
+    InsertAfterPolyn(A, -5, 2);
+
+    RunTest("TEST 11: 插入后系数抵消",
+            A, B, E, &pass, &total);
+
+    Destroy(A);
+    Destroy(B);
+    Destroy(E);
+
     // 汇总测试结果
     printf("\n%s%s", COLOR_BOLD, COLOR_CYAN);
     printf("====================================================\n");
