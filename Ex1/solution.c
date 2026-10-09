@@ -80,6 +80,21 @@ void InsertAfterPolyn(Polyn* head, float coef, int expn) {
     }
 }
 
+//回收指针
+void Destroy(Polyn* head) {
+    if(head == NULL) {
+        return;
+    }
+
+    Polyn* p = head;
+    Polyn* q;
+    while(p != NULL) {
+        q = p;
+        p = p->next;
+        free(q);
+    }
+}
+
 Polyn* CreatePolyn(int m) {
     Polyn* head = InitPolyn();
 
@@ -191,21 +206,6 @@ void PrintPolyn(Polyn* head) {
         p = p->next;
     }
     printf("\n");
-}
-
-//回收指针
-void Destroy(Polyn* head) {
-    if(head == NULL) {
-        return;
-    }
-
-    Polyn* p = head;
-    Polyn* q;
-    while(p != NULL) {
-        q = p;
-        p = p->next;
-        free(q);
-    }
 }
 
 // ANSI 颜色定义
