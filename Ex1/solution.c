@@ -25,6 +25,9 @@ Polyn* InitPolyn() {
 
 //根据指数查找该项是否存在
 int LocatePolyn(Polyn* head, int expn) {
+    if(head == NULL) {
+        return 0;
+    }
     Polyn* cur = head->next;
     while(cur != NULL) {
         //多项式默认为升序排列，若指数过大，直接返回0
