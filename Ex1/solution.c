@@ -472,6 +472,7 @@ int main(void) {
     Destroy(B);
     Destroy(E);
 
+
     // 测试9：乱序指数插入
     A = InitPolyn();
 
@@ -515,6 +516,23 @@ int main(void) {
     }
 
     Destroy(A);
+
+    // 测试10：重复指数合并
+    A = InitPolyn();
+    B = InitPolyn();
+    E = InitPolyn();
+
+    InsertAfterPolyn(A, 2, 3);
+    InsertAfterPolyn(A, 5, 3);
+
+    InsertAfterPolyn(E, 7, 3);
+
+    RunTest("TEST 10: 重复指数合并",
+            A, B, E, &pass, &total);
+
+    Destroy(A);
+    Destroy(B);
+    Destroy(E);
 
     // 汇总测试结果
     printf("\n%s%s", COLOR_BOLD, COLOR_CYAN);
