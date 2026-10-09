@@ -86,7 +86,11 @@ Polyn* CreatePolyn(int m) {
     for(int i = 0; i < m; i++) {
         float coef;
         int expn;
-        scanf("%f %d", &coef, &expn);
+        if(scanf("%f %d", &coef, &expn) != 2) {
+            fprintf(stderr, "输入格式错误\n");
+            Destroy(head);
+            exit(EXIT_FAILURE);
+        }
         InsertAfterPolyn(head, coef, expn);
     }
 
