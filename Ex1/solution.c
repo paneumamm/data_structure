@@ -534,7 +534,7 @@ int main(void) {
     Destroy(B);
     Destroy(E);
 
-    
+
     // 测试11：插入后系数抵消
     A = InitPolyn();
     B = InitPolyn();
@@ -544,6 +544,21 @@ int main(void) {
     InsertAfterPolyn(A, -5, 2);
 
     RunTest("TEST 11: 插入后系数抵消",
+            A, B, E, &pass, &total);
+
+    Destroy(A);
+    Destroy(B);
+    Destroy(E);
+
+    
+    // 测试12：插入零系数项
+    A = InitPolyn();
+    B = InitPolyn();
+    E = InitPolyn();
+
+    InsertAfterPolyn(A, 0, 3);
+
+    RunTest("TEST 12: 插入零系数项",
             A, B, E, &pass, &total);
 
     Destroy(A);
