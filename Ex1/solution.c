@@ -46,7 +46,7 @@ int LocatePolyn(Polyn* head, int expn) {
 }
 
 void InsertAfterPolyn(Polyn* head, float coef, int expn) {
-    if(head == NULL || coef < 1e-6) {
+    if(head == NULL || fabs(coef) < 1e-6) {
         return;
     }
 
