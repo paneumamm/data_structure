@@ -109,7 +109,7 @@ Polyn* AddPolyn(Polyn* add1, Polyn* add2) {
         float c2 = p2->coef; 
 
         if(e1 == e2) {
-           if(c1 + c2 == 0) {
+           if(fabs(c1 + c2) < 1e-6) {
                 p1 = p1->next;
                 p2 = p2->next;
                 continue;
