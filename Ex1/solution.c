@@ -472,8 +472,49 @@ int main(void) {
     Destroy(B);
     Destroy(E);
 
+    // 测试9：乱序指数插入
+    A = InitPolyn();
 
+    InsertAfterPolyn(A, 3, 4);
+    InsertAfterPolyn(A, 2, 1);
+    InsertAfterPolyn(A, 5, 3);
 
+    Polyn *p = A->next;
+    int correct = 1;
+    int expectedExpn[] = {1, 3, 4};
+    float expectedCoef[] = {2, 5, 3};
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (p == NULL ||
+            p->expn != expectedExpn[i] ||
+            fabs(p->coef - expectedCoef[i]) > 1e-6)
+        {
+            correct = 0;
+            break;
+        }
+        p = p->next;
+    }
+
+    if (p != NULL)
+    {
+        correct = 0;
+    }
+
+    total++;
+    if (correct)
+    {
+        pass++;
+        printf("\nTEST 9: 乱序指数插入：%sPASS%s\n",
+               COLOR_GREEN, COLOR_RESET);
+    }
+    else
+    {
+        printf("\nTEST 9: 乱序指数插入：%sERROR%s\n",
+               COLOR_RED, COLOR_RESET);
+    }
+
+    Destroy(A);
 
     // 汇总测试结果
     printf("\n%s%s", COLOR_BOLD, COLOR_CYAN);
