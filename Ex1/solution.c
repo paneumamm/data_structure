@@ -449,9 +449,30 @@ int main(void) {
     Destroy(A);
     Destroy(B);
     Destroy(E);
-
-
     
+
+
+    // 测试8：B为空多项式
+    A = InitPolyn();
+    B = InitPolyn();
+    E = InitPolyn();
+
+    InsertAfterPolyn(A, 2, 1);
+    InsertAfterPolyn(A, 3, 3);
+    InsertAfterPolyn(A, 4, 5);
+
+    InsertAfterPolyn(E, 2, 1);
+    InsertAfterPolyn(E, 3, 3);
+    InsertAfterPolyn(E, 4, 5);
+
+    RunTest("TEST 8: B为空多项式",
+            A, B, E, &pass, &total);
+
+    Destroy(A);
+    Destroy(B);
+    Destroy(E);
+
+
 
 
     // 汇总测试结果
