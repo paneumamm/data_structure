@@ -129,6 +129,10 @@ Polyn* CreatePolyn(int m) {
 Polyn* AddPolyn(Polyn* add1, Polyn* add2) {
     Polyn* head = InitPolyn();
 
+    if(add1 == NULL || add2 == NULL) {
+        return NULL;
+    }
+
     Polyn* p1 = add1->next;
     Polyn* p2 = add2->next;
 
