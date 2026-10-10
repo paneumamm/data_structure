@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<math.h>+
+#include<math.h>
 
 // ANSI 颜色定义
 #define COLOR_RESET  "\033[0m"
@@ -10,7 +10,7 @@
 #define COLOR_YELLOW "\033[33m"
 #define COLOR_BOLD   "\033[1m"
 // 精度统一定义
-#define EPSILON 1e-10
+#define EPSILON 1e-7
 
 typedef struct Polynomial {
    float coef;
@@ -227,7 +227,7 @@ int EqualPolyn(Polyn* A, Polyn* B) {
 
     while (p != NULL && q != NULL) {
         if (p->expn != q->expn ||
-            fabs(p->coef - q->coef) > 1e-6) {
+            fabs(p->coef - q->coef) > EPSILON) {
             return 0;
         }
 
@@ -490,7 +490,7 @@ int main(void) {
     {
         if (p == NULL ||
             p->expn != expectedExpn[i] ||
-            fabs(p->coef - expectedCoef[i]) > 1e-6)
+            fabs(p->coef - expectedCoef[i]) > EPSILON)
         {
             correct = 0;
             break;
